@@ -1,1 +1,4 @@
 AMAZON.HelpIntent Tell me more about this skill
+CookingTippIntent Gib mir einen Kochtipp
+CookingTippIntent Ich möchte etwas kochen.
+CookingTippIntent Ich möchte etwas mit {sideDish} kochen.

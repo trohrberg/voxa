@@ -4,11 +4,14 @@ const views = (function views() {
   return {
     Intent: {
       Launch: {
-        tell: 'Welcome!',
+        ask: 'Willkommen! Was möchtest du tun?',
       },
       Help: {
         say: 'Some help text here.',
       },
+      StartCooking: {
+        tell: 'Ok, lass uns kochen.',
+      }
     },
   };
 }());

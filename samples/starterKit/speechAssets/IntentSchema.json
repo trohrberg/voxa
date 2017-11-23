@@ -1,37 +1,137 @@
 {
-  "intents": [
+  "languageModel": {
+    "types": [
+      {
+        "name": "dessertType",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "Pudding",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Eis",
+              "synonyms": []
+            }
+          }
+        ]
+      },
+      {
+        "name": "sideDishType",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "Reis",
+              "synonyms": []
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "Pasta",
+              "synonyms": [
+                "Nudeln",
+                "Spaghetti"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": [
+          "Tell me more about this skill"
+        ]
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "CookingTippIntent",
+        "samples": [
+          "Gib mir einen Kochtipp.",
+          "Ich möchte etwas kochen.",
+          "Ich möchte etwas mit {sideDish} kochen."
+        ],
+        "slots": [
+          {
+            "name": "sideDish",
+            "type": "sideDishType",
+            "samples": [
+              "Ich möchte {sideDish} essen."
+            ]
+          },
+          {
+            "name": "dessert",
+            "type": "dessertType",
+            "samples": [
+              "{dessert}"
+            ]
+          }
+        ]
+      }
+    ],
+    "invocationName": "koch tipp"
+  },
+  "prompts": [
     {
-      "intent": "AMAZON.CancelIntent"
+      "id": "Elicit.Intent-CookingTippIntent.IntentSlot-sideDish",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Welche Beilage möchtest du essen?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-CookingTippIntent.IntentSlot-dessert",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Welchen Nachtisch?"
+        }
+      ]
     }
-    , {
-      "intent": "AMAZON.HelpIntent"
-    }
-    , {
-      "intent": "AMAZON.NextIntent"
-    }
-    , {
-      "intent": "AMAZON.NoIntent"
-    }
-    , {
-      "intent": "AMAZON.PauseIntent"
-    }
-    , {
-      "intent": "AMAZON.PreviousIntent"
-    }
-    , {
-      "intent": "AMAZON.RepeatIntent"
-    }
-    , {
-      "intent": "AMAZON.ResumeIntent"
-    }
-    , {
-      "intent": "AMAZON.StartOverIntent"
-    }
-    , {
-      "intent": "AMAZON.StopIntent"
-    }
-    , {
-      "intent": "AMAZON.YesIntent"
-    }
-  ]
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "CookingTippIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "sideDish",
+            "type": "sideDishType",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-CookingTippIntent.IntentSlot-sideDish"
+            }
+          },
+          {
+            "name": "dessert",
+            "type": "dessertType",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-CookingTippIntent.IntentSlot-dessert"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
